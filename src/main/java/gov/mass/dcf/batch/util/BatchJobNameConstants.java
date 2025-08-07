@@ -1,0 +1,26 @@
+/*
+ * Created on Aug 6, 2025
+ *
+ * Department of Social Services, Massachusetts.
+ * This file is part of FamilyNet Application.
+ * 
+ * $Header$  
+ */
+package gov.mass.dcf.batch.util;
+
+/**
+ * TODO: DOCUMENT ME!!
+ *
+ * @author prava
+ * @version $Revision$ $Date$
+ */
+public class BatchJobNameConstants {
+	
+	//Sample Job
+	public static final String SAMPLE_JOB = "sampleJob";
+	public static final String FIRST_STEP = "firstStep";
+	public static final String SECOND_STEP = "secondStep";
+	
+	public static final String SAMPLE_JOB_TRIGGER = "sampleJobTrigger";
+	public static final String SAMPLE_JOB_SCHEDULE = "0 0/1 * * * ?"; // Example: run every minute
+}
