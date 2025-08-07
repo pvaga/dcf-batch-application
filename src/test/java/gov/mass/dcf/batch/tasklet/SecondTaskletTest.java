@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
 class SecondTaskletTest {
+	
     @Test
     void testExecute() throws Exception {
         SecondTasklet tasklet = new SecondTasklet();
@@ -17,4 +18,5 @@ class SecondTaskletTest {
         RepeatStatus status = tasklet.execute(contribution, chunkContext);
         assertEquals(RepeatStatus.FINISHED, status);
     }
+    
 }
