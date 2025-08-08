@@ -19,5 +19,3 @@ This project is a Maven-based Spring Boot batch application for DCF, using Oracl
 
 ## Customization
 - Update Oracle DB connection in `application.properties`
-
----

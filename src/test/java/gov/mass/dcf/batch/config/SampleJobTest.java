@@ -17,8 +17,9 @@ import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.test.JobLauncherTestUtils;
 import org.springframework.batch.test.context.SpringBatchTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 
 /**
@@ -28,7 +29,8 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @version $Revision$ $Date$
  */
 @SpringBatchTest
-@SpringBootTest
+@SpringJUnitConfig({BaseTestConfiguration.class})
+@TestPropertySource(locations = "classpath:application.properties")
 public class SampleJobTest {
 
 
@@ -53,10 +55,10 @@ public class SampleJobTest {
         JobExecution jobExecution = jobLauncherTestUtils.launchJob(jobParameters);
         
         while(jobExecution.isRunning()) {
-        	Thread.sleep(100);
-    	}
+            Thread.sleep(100);
+        }
 
         // Then
-    	assertEquals("COMPLETED", jobExecution.getExitStatus().getExitCode());
+        assertEquals("COMPLETED", jobExecution.getExitStatus().getExitCode());
     }
 }
