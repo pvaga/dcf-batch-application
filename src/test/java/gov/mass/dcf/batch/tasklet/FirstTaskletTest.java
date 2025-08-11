@@ -7,6 +7,8 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.batch.test.context.SpringBatchTest;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
+import gov.mass.dcf.batch.job.tasklet.FirstTasklet;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 

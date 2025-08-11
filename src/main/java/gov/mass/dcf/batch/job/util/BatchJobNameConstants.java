@@ -6,7 +6,7 @@
  * 
  * $Header$  
  */
-package gov.mass.dcf.batch.util;
+package gov.mass.dcf.batch.job.util;
 
 /**
  * TODO: DOCUMENT ME!!

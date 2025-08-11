@@ -6,7 +6,7 @@
  * 
  * $Header$  
  */
-package gov.mass.dcf.batch.config;
+package gov.mass.dcf.batch.job.config;
 
 import org.quartz.JobDetail;
 import org.quartz.Trigger;
@@ -17,9 +17,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import gov.mass.dcf.batch.tasklet.FirstTasklet;
-import gov.mass.dcf.batch.tasklet.SecondTasklet;
-import gov.mass.dcf.batch.util.BatchJobNameConstants;
+import gov.mass.dcf.batch.config.BatchJobLauncher;
+import gov.mass.dcf.batch.config.JvmShutdownListener;
+import gov.mass.dcf.batch.config.QuartzConfig;
+import gov.mass.dcf.batch.job.tasklet.FirstTasklet;
+import gov.mass.dcf.batch.job.tasklet.SecondTasklet;
+import gov.mass.dcf.batch.job.util.BatchJobNameConstants;
 
 /**
  * TODO: DOCUMENT ME!!

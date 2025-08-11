@@ -1,4 +1,4 @@
-package gov.mass.dcf.batch.tasklet;
+package gov.mass.dcf.batch.job.tasklet;
 
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.scope.context.ChunkContext;
@@ -10,11 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
-public class FirstTasklet implements Tasklet {
-
+public class SecondTasklet implements Tasklet {
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) {
-        log.info("####First Tasklet executed");
+        log.info("####Second Tasklet executed");
         return RepeatStatus.FINISHED;
     }
 }

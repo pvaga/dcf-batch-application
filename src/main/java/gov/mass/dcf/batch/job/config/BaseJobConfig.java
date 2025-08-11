@@ -1,4 +1,4 @@
-package gov.mass.dcf.batch.config;
+package gov.mass.dcf.batch.job.config;
 
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.Job;
@@ -9,6 +9,8 @@ import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.transaction.PlatformTransactionManager;
+
+import gov.mass.dcf.batch.config.JvmShutdownListener;
 
 public abstract class BaseJobConfig {
 
