@@ -24,5 +24,10 @@
             <AppenderRef ref="BatchFile"/>
             <AppenderRef ref="Console"/>
         </Logger>
+        
+         <Logger name="org.springframework.boot.web" level="info" additivity="false">
+            <AppenderRef ref="BatchFile"/>
+            <AppenderRef ref="Console"/>
+        </Logger>
     </Loggers>
 </Configuration>
