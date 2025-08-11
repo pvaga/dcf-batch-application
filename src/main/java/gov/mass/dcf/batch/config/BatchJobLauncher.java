@@ -1,3 +1,11 @@
+/*
+ * Created on Aug 11, 2025
+ *
+ * Department of Social Services, Massachusetts.
+ * This file is part of FamilyNet Application.
+ *
+ * $Header$
+ */
 package gov.mass.dcf.batch.config;
 
 import org.quartz.JobDataMap;
@@ -10,6 +18,12 @@ import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
+/**
+ * Quartz job bean for launching Spring Batch jobs from Quartz triggers.
+ *
+ * @author prava
+ * @version $Revision$ $Date$
+ */
 public class BatchJobLauncher extends QuartzJobBean {
 
     @Autowired

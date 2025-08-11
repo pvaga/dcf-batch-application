@@ -1,15 +1,15 @@
 /*
- * Created on Aug 6, 2025
+ * Created on Aug 11, 2025
  *
  * Department of Social Services, Massachusetts.
  * This file is part of FamilyNet Application.
- * 
- * $Header$  
+ *
+ * $Header$
  */
 package gov.mass.dcf.batch.job.util;
 
 /**
- * TODO: DOCUMENT ME!!
+ * Constants for batch job and step names, triggers, and schedules.
  *
  * @author prava
  * @version $Revision$ $Date$

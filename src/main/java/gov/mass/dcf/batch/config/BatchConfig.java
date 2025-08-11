@@ -1,3 +1,11 @@
+/*
+ * Created on Aug 11, 2025
+ *
+ * Department of Social Services, Massachusetts.
+ * This file is part of FamilyNet Application.
+ *
+ * $Header$
+ */
 package gov.mass.dcf.batch.config;
 
 import org.springframework.batch.core.configuration.JobRegistry;
@@ -7,7 +15,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * This class is used to configure the batch processing settings for the application.
+ * Batch configuration for Spring Batch jobs, including table prefix and job registry post-processor.
  *
  * @author prava
  * @version $Revision$ $Date$

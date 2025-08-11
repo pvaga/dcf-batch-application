@@ -1,3 +1,11 @@
+/*
+ * Created on Aug 11, 2025
+ *
+ * Department of Social Services, Massachusetts.
+ * This file is part of FamilyNet Application.
+ *
+ * $Header$
+ */
 package gov.mass.dcf.batch.config;
 
 import java.time.Duration;
@@ -10,6 +18,12 @@ import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Spring Batch JobExecutionListener to handle JVM shutdown events and log job status.
+ *
+ * @author prava
+ * @version $Revision$ $Date$
+ */
 @Slf4j
 @Component
 public class JvmShutdownListener implements JobExecutionListener {

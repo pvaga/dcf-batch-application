@@ -1,3 +1,11 @@
+/*
+ * Created on Aug 11, 2025
+ *
+ * Department of Social Services, Massachusetts.
+ * This file is part of FamilyNet Application.
+ *
+ * $Header$
+ */
 package gov.mass.dcf.batch.job.contoller;
 
 import org.springframework.batch.core.explore.JobExplorer;
@@ -10,6 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * REST controller for retrieving Spring Batch job execution details.
+ *
+ * Provides an endpoint to list running job executions.
+ *
+ * @author prava
+ * @version $Revision$ $Date$
+ */
 @RestController
 @RequestMapping("/batch")
 public class SpringBatchDetailController {
