@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @version $Revision$ $Date$
  */
 @RestController
-@RequestMapping("/batch")
+@RequestMapping("/ifnet/job")
 public class SampleJobController {
 
     @Autowired

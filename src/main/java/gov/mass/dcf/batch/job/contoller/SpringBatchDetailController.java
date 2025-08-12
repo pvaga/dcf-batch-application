@@ -28,7 +28,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
  * @version $Revision$ $Date$
  */
 @RestController
-@RequestMapping("/batch")
+@RequestMapping("/spring/batch")
 @Tag(name = "Batch Details", description = "APIs for exploring Spring Batch job and execution details.")
 public class SpringBatchDetailController {
 	
