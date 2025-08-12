@@ -22,7 +22,7 @@ import gov.mass.dcf.batch.config.JvmShutdownListener;
 import gov.mass.dcf.batch.config.QuartzConfig;
 import gov.mass.dcf.batch.job.tasklet.FirstTasklet;
 import gov.mass.dcf.batch.job.tasklet.SecondTasklet;
-import gov.mass.dcf.batch.job.util.BatchJobNameConstants;
+import gov.mass.dcf.batch.job.util.BatchJobConfigConstants;
 
 /**
  * TODO: DOCUMENT ME!!
@@ -41,27 +41,27 @@ public class SampleJobConfig extends BaseJobConfig {
 	// Tasklets for the job steps
     @Bean
     public Step firstStep(FirstTasklet firstTasklet) {
-        return createStep(BatchJobNameConstants.FIRST_STEP, firstTasklet);
+        return createStep(BatchJobConfigConstants.FIRST_STEP, firstTasklet);
     }
 
     @Bean
     public Step secondStep(SecondTasklet secondTasklet) {
-        return createStep(BatchJobNameConstants.SECOND_STEP, secondTasklet);
+        return createStep(BatchJobConfigConstants.SECOND_STEP, secondTasklet);
     }
 
     @Bean
     public Job sampleJob(JobRepository jobRepository, Step firstStep, Step secondStep) {
-        return createJob(BatchJobNameConstants.SAMPLE_JOB, firstStep, secondStep);
+        return createJob(BatchJobConfigConstants.SAMPLE_JOB, firstStep, secondStep);
     }
     
     //Quartz job and trigger configuration
     @Bean
     public JobDetail sampleJobDetail() {
-        return QuartzConfig.createJobDetail(BatchJobNameConstants.SAMPLE_JOB, BatchJobLauncher.class);
+        return QuartzConfig.createJobDetail(BatchJobConfigConstants.SAMPLE_JOB, BatchJobLauncher.class);
     }
 
     @Bean
     public Trigger sampleJobTrigger(JobDetail sampleJobDetail) {
-        return QuartzConfig.createTrigger(sampleJobDetail, BatchJobNameConstants.SAMPLE_JOB_TRIGGER, BatchJobNameConstants.SAMPLE_JOB_SCHEDULE); // Example: run every minute
+        return QuartzConfig.createTrigger(sampleJobDetail, BatchJobConfigConstants.SAMPLE_JOB_TRIGGER, BatchJobConfigConstants.SAMPLE_JOB_SCHEDULE); // Example: run every minute
     }
 }

@@ -14,7 +14,7 @@ package gov.mass.dcf.batch.job.util;
  * @author prava
  * @version $Revision$ $Date$
  */
-public class BatchJobNameConstants {
+public class BatchJobConfigConstants {
 	
 	//Sample Job
 	public static final String SAMPLE_JOB = "sampleJob";
