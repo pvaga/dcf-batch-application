@@ -40,6 +40,11 @@ public class SampleJobController {
     @Autowired
     private Job sampleJob;
 
+    /**
+     * Endpoint to launch the sample Spring Batch job.
+     *
+     * @return ResponseEntity with status and message
+     */
     @PostMapping("/run-sample-job")
     public ResponseEntity<String> runSampleJob() {
         try {

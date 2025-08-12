@@ -25,16 +25,29 @@ public class QuartzConfig {
 
 	private static final String JOB_NAME = "jobName";
 
-	// Generic API to create JobDetail
+    /**
+     * Creates a Quartz JobDetail for the given job name and class.
+     *
+     * @param jobName the name of the job
+     * @param jobClass the class implementing the job
+     * @return JobDetail instance
+     */
     public static JobDetail createJobDetail(String jobName, Class<? extends Job> jobClass) {
-		return JobBuilder.newJob(jobClass)
-						 .withIdentity(jobName)
-						 .usingJobData(JOB_NAME, jobName)
-						 .storeDurably(true)
-						 .build();
-	}
+        return JobBuilder.newJob(jobClass)
+                         .withIdentity(jobName)
+                         .usingJobData(JOB_NAME, jobName)
+                         .storeDurably(true)
+                         .build();
+    }
 
-    // Generic API to create Trigger with cron expression
+    /**
+     * Creates a Quartz Trigger for the given job detail and cron expression.
+     *
+     * @param jobDetail the JobDetail to trigger
+     * @param triggerName the name of the trigger
+     * @param cronExpression the cron schedule expression
+     * @return Trigger instance
+     */
     public static Trigger createTrigger(JobDetail jobDetail, String triggerName, String cronExpression) {
         return TriggerBuilder.newTrigger()
                 .forJob(jobDetail)

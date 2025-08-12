@@ -19,6 +19,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class DcfBatchApplication {
+    /**
+     * Main method to launch the Spring Boot application.
+     *
+     * @param args command-line arguments
+     */
     public static void main(String[] args) {
         SpringApplication.run(DcfBatchApplication.class, args);
     }

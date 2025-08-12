@@ -32,17 +32,21 @@ public class BatchJobLauncher extends QuartzJobBean {
     @Autowired
     private JobLocator jobLocator;
 
+    /**
+     * Executes the batch job as triggered by Quartz.
+     *
+     * @param context the Quartz JobExecutionContext
+     */
     @Override
     protected void executeInternal(JobExecutionContext context) {
         try {
             JobDataMap jobDataMap = context.getJobDetail().getJobDataMap();
             String jobName = jobDataMap.getString("jobName");
-            
+
             Job job = jobLocator.getJob(jobName);
-            JobParameters params = new JobParametersBuilder()
-                    .addLong("time", System.currentTimeMillis())
-                    .toJobParameters();
-            
+            JobParameters params = new JobParametersBuilder().addLong("time", System.currentTimeMillis())
+                    										 .toJobParameters();
+
             jobLauncher.run(job, params);
         } catch (Exception e) {
             e.printStackTrace();

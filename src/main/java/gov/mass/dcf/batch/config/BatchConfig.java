@@ -25,13 +25,24 @@ public class BatchConfig extends DefaultBatchConfiguration {
 
 	public static final String BATCH_TABLE_PREFIX = "IFNET_BATCH_";
 
+    /**
+     * Registers a JobRegistryBeanPostProcessor bean for job registry integration.
+     *
+     * @param jobRegistry the job registry
+     * @return JobRegistryBeanPostProcessor instance
+     */
     @Bean
     public JobRegistryBeanPostProcessor jobRegistryBeanPostProcessor(JobRegistry jobRegistry) {
         JobRegistryBeanPostProcessor postProcessor = new JobRegistryBeanPostProcessor();
         postProcessor.setJobRegistry(jobRegistry);
         return postProcessor;
     }
-    
+
+    /**
+     * Returns the table prefix for Spring Batch metadata tables.
+     *
+     * @return the table prefix string
+     */
     @Override
     public String getTablePrefix() {
         return BATCH_TABLE_PREFIX;

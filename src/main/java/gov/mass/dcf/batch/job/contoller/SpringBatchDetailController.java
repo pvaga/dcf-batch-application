@@ -37,16 +37,20 @@ public class SpringBatchDetailController {
 	
     /**
      * Get all registered Spring Batch job names.
+     *
      * @return List of job names
      */
-    // 1. Get all registered job names
     @Operation(summary = "Get all registered Spring Batch job names", description = "Get all registered Spring Batch job names")
     @GetMapping("/job-names")
     public ResponseEntity<List<String>> getJobNames() {
         return ResponseEntity.ok(new ArrayList<>(jobExplorer.getJobNames()));
     }
 
-    // 2. Get all running job executions
+    /**
+     * Get all running job executions for all jobs.
+     *
+     * @return List of running job execution descriptions
+     */
     @Operation(summary = "Get all running job executions")
     @GetMapping("/running-job-executions")
     public ResponseEntity<List<String>> getRunningJobExecutions() {
@@ -57,7 +61,12 @@ public class SpringBatchDetailController {
         return ResponseEntity.ok(executions);
     }
 
-    // 3. Find all running JobExecutions for a given job name
+    /**
+     * Find all running job executions for a given job name.
+     *
+     * @param jobName the job name
+     * @return List of running job execution descriptions
+     */
     @Operation(summary = "Find all running job executions for a given job name")
     @GetMapping("/running-job-executions/{jobName}")
     public ResponseEntity<List<String>> getRunningJobExecutions(@PathVariable String jobName) {
@@ -66,7 +75,12 @@ public class SpringBatchDetailController {
         return ResponseEntity.ok(result);
     }
 
-    // 4. Get a specific JobInstance by its instanceId
+    /**
+     * Get a specific JobInstance by its instanceId.
+     *
+     * @param instanceId the job instance ID
+     * @return the JobInstance or 404 if not found
+     */
     @Operation(summary = "Get a specific JobInstance by its instanceId")
     @GetMapping("/job-instance/{instanceId}")
     public ResponseEntity<JobInstance> getJobInstance(@PathVariable Long instanceId) {
@@ -74,7 +88,12 @@ public class SpringBatchDetailController {
         return jobInstance != null ? ResponseEntity.ok(jobInstance) : ResponseEntity.notFound().build();
     }
 
-    // 5. Get last 100 job instances for a given job name
+    /**
+     * Get last 100 job instances for a given job name.
+     *
+     * @param jobName the job name
+     * @return List of job instance IDs
+     */
     @Operation(summary = "Get last 100 job instances for a given job name")
     @GetMapping("/job-instances/{jobName}")
     public ResponseEntity<List<Long>> getJobInstances(@PathVariable String jobName) {
@@ -83,7 +102,12 @@ public class SpringBatchDetailController {
         return ResponseEntity.ok(ids);
     }
 
-    // 6. Get all job executions for a given job instance id
+    /**
+     * Get all job executions for a given job instance id.
+     *
+     * @param instanceId the job instance ID
+     * @return List of JobExecution objects
+     */
     @Operation(summary = "Get all job executions for a given job instance id")
     @GetMapping("/job-executions/{instanceId}")
     public ResponseEntity<List<JobExecution>> getJobExecutionsForInstance(@PathVariable Long instanceId) {
@@ -91,7 +115,12 @@ public class SpringBatchDetailController {
         return ResponseEntity.ok(executions);
     }
 
-    // 7. Get a specific JobExecution by its executionId
+    /**
+     * Get a specific JobExecution by its executionId.
+     *
+     * @param executionId the job execution ID
+     * @return the JobExecution or 404 if not found
+     */
     @Operation(summary = "Get a specific JobExecution by its executionId")
     @GetMapping("/job-execution/{executionId}")
     public ResponseEntity<JobExecution> getJobExecution(@PathVariable Long executionId) {
@@ -99,7 +128,13 @@ public class SpringBatchDetailController {
         return jobExecution != null ? ResponseEntity.ok(jobExecution) : ResponseEntity.notFound().build();
     }
 
-    // 8. Get a specific StepExecution by jobExecutionId and stepExecutionId
+    /**
+     * Get a specific StepExecution by jobExecutionId and stepExecutionId.
+     *
+     * @param jobExecutionId the job execution ID
+     * @param stepExecutionId the step execution ID
+     * @return the StepExecution or 404 if not found
+     */
     @Operation(summary = "Get a specific StepExecution by jobExecutionId and stepExecutionId")
     @GetMapping("/step-execution/{jobExecutionId}/{stepExecutionId}")
     public ResponseEntity<StepExecution> getStepExecution(@PathVariable Long jobExecutionId, @PathVariable Long stepExecutionId) {

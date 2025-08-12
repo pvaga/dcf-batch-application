@@ -30,12 +30,17 @@ public class JvmShutdownListener implements JobExecutionListener {
     
     private final ThreadLocal<LocalDateTime> startTime = new ThreadLocal<>();
 
+    /**
+     * Called before a job starts. Logs job start and adds a JVM shutdown hook.
+     *
+     * @param jobExecution the JobExecution context
+     */
     @Override
     public void beforeJob(JobExecution jobExecution) {
         startTime.set(LocalDateTime.now());
         String jobName = jobExecution.getJobInstance().getJobName();
-        
-        log.info("####Job Started: {} - Parameters: {} - Start Time: {}", 
+
+        log.info("####Job Started: {} - Parameters: {} - Start Time: {}",
                 jobName,
                 jobExecution.getJobParameters(),
                 startTime.get());
@@ -43,7 +48,7 @@ public class JvmShutdownListener implements JobExecutionListener {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             if (jobExecution.isRunning()) {
                 log.warn("####JVM shutdown requested while job {} is still running. Waiting for completion...", jobName);
-                
+
                 while (jobExecution.isRunning()) {
                     try {
                         Thread.sleep(1000);
@@ -58,44 +63,49 @@ public class JvmShutdownListener implements JobExecutionListener {
         }));
     }
 
+    /**
+     * Called after a job ends. Logs job completion or failure details.
+     *
+     * @param jobExecution the JobExecution context
+     */
     @Override
     public void afterJob(JobExecution jobExecution) {
         LocalDateTime endTime = LocalDateTime.now();
         String jobName = jobExecution.getJobInstance().getJobName();
         Duration duration = Duration.between(startTime.get(), endTime);
-        
+
         if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
-            log.info("####Job Completed Successfully: {} - Duration: {} seconds - End Time: {}", 
+            log.info("####Job Completed Successfully: {} - Duration: {} seconds - End Time: {}",
                     jobName,
                     duration.getSeconds(),
                     endTime);
-            
-            log.debug("####Job {} Details - Read Count: {}, Write Count: {}, Skip Count: {}", 
+
+            log.debug("####Job {} Details - Read Count: {}, Write Count: {}, Skip Count: {}",
                     jobName,
                     jobExecution.getStepExecutions().stream().mapToLong(step -> step.getReadCount()).sum(),
                     jobExecution.getStepExecutions().stream().mapToLong(step -> step.getWriteCount()).sum(),
                     jobExecution.getStepExecutions().stream().mapToLong(step -> step.getSkipCount()).sum());
         } else {
-            log.error("####Job Failed: {} - Status: {} - Duration: {} seconds - End Time: {}", 
+            log.error("####Job Failed: {} - Status: {} - Duration: {} seconds - End Time: {}",
                     jobName,
                     jobExecution.getStatus(),
                     duration.getSeconds(),
                     endTime);
-            
-            log.error("####Job {} Failure Details - Exit Description: {}", 
+
+            log.error("####Job {} Failure Details - Exit Description: {}",
                     jobName,
                     jobExecution.getExitStatus().getExitDescription());
-            
+
             jobExecution.getStepExecutions().forEach(stepExecution -> {
                 if (stepExecution.getStatus() != BatchStatus.COMPLETED) {
-                    log.error("####Failed Step: {} - Status: {} - Exit Description: {}", 
+                    log.error("####Failed Step: {} - Status: {} - Exit Description: {}",
                             stepExecution.getStepName(),
                             stepExecution.getStatus(),
                             stepExecution.getExitStatus().getExitDescription());
                 }
             });
         }
-        
+
         startTime.remove(); // Clean up ThreadLocal
     }
 }

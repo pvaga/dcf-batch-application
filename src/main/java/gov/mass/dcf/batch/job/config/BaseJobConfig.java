@@ -34,6 +34,13 @@ public abstract class BaseJobConfig {
 	
 	protected JvmShutdownListener listener;
 	
+	/**
+	 * Constructor for BaseJobConfig.
+	 *
+	 * @param jobRepository      the job repository
+	 * @param transactionManager the transaction manager
+	 * @param listener           the JVM shutdown listener
+	 */
 	public BaseJobConfig(JobRepository jobRepository, PlatformTransactionManager transactionManager, JvmShutdownListener listener) {
 		this.jobRepository = jobRepository;
 		this.transactionManager = transactionManager;
@@ -48,24 +55,37 @@ public abstract class BaseJobConfig {
 		}
 	}
 	
-    protected Step createStep(String stepName, Tasklet tasklet) {
-        return new StepBuilder(stepName, jobRepository)
-                .tasklet(tasklet, transactionManager)
-                .build();
-    }
-    
-    protected Job createJob(String jobName, Step... steps) {
-    	
-    	if (steps.length == 0) throw new IllegalArgumentException("At least one step required");
-    	
-    	SimpleJobBuilder builder = new JobBuilder(jobName, jobRepository).listener(listener)
-    					                								 .incrementer(new RunIdIncrementer())
-    																	 .start(steps[0]);
-        
-        for (int i = 1; i < steps.length; i++) {
-            builder = builder.next(steps[i]);
-        }
-        
-        return builder.build();
-    }
+	/**
+	 * Creates a Spring Batch Step with the given name and tasklet.
+	 *
+	 * @param stepName the name of the step
+	 * @param tasklet the Tasklet to execute
+	 * @return Step instance
+	 */
+	protected Step createStep(String stepName, Tasklet tasklet) {
+		return new StepBuilder(stepName, jobRepository).tasklet(tasklet, transactionManager)
+													   .build();
+	}
+
+	/**
+	 * Creates a Spring Batch Job with the given name and steps.
+	 *
+	 * @param jobName the name of the job
+	 * @param steps the steps to include in the job
+	 * @return Job instance
+	 */
+	protected Job createJob(String jobName, Step... steps) {
+
+		if (steps.length == 0) throw new IllegalArgumentException("At least one step required");
+
+		SimpleJobBuilder builder = new JobBuilder(jobName, jobRepository).listener(listener)
+																		 .incrementer(new RunIdIncrementer())
+																		 .start(steps[0]);
+
+		for (int i = 1; i < steps.length; i++) {
+			builder = builder.next(steps[i]);
+		}
+
+		return builder.build();
+	}
 }
