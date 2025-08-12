@@ -40,7 +40,7 @@ public class SpringBatchDetailController {
      * @return List of job names
      */
     // 1. Get all registered job names
-    @Operation(summary = "Get all registered Spring Batch job names")
+    @Operation(summary = "Get all registered Spring Batch job names", description = "Get all registered Spring Batch job names")
     @GetMapping("/job-names")
     public ResponseEntity<List<String>> getJobNames() {
         return ResponseEntity.ok(new ArrayList<>(jobExplorer.getJobNames()));
