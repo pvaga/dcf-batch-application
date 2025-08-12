@@ -22,5 +22,5 @@ public class BatchJobNameConstants {
 	public static final String SECOND_STEP = "secondStep";
 	
 	public static final String SAMPLE_JOB_TRIGGER = "sampleJobTrigger";
-	public static final String SAMPLE_JOB_SCHEDULE = "0 0/1 * * * ?"; // Example: run every minute
+	public static final String SAMPLE_JOB_SCHEDULE = "0 0/5 * * * ?"; // Every 5 minutes
 }
