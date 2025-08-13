@@ -19,3 +19,23 @@ This project is a Maven-based Spring Boot batch application for DCF, using Oracl
 
 ## Customization
 - Update Oracle DB connection in `application.properties`
+
+## How to Configure a New Job
+
+To add a new batch job to this application, follow these steps:
+
+###1. **Add Job & Schedule Details**
+- Open `BatchJobConfigConstants.java` (in `gov.mass.dcf.batch.job.util`).
+- Add new constants for your job name, step name(s), trigger, and schedule (cron expression).
+
+###2. **Add a Tasklet**
+- Create a new class in `gov.mass.dcf.batch.job.tasklet`.
+- Extend `Tasklet` and implement the `execute` method with your job logic.
+
+###3. **Configure the Job**
+- Create or update a job configuration class in `gov.mass.dcf.batch.job.config`.
+- Add job configuration class by extending `BaseJobConfig`.
+- Define beans for your step(s) using your new Tasklet.
+- Define a bean for the Job, referencing your step(s).
+- Configure Quartz JobDetail and Trigger beans for scheduling.
+

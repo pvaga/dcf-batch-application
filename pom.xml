@@ -180,7 +180,7 @@
 									<artifactId>lombok</artifactId>
 								</exclude>
 							</excludes>
-							<mainClass>gov.mass.dcf.web.application.IfamilynetApplication</mainClass>
+							<mainClass>gov.mass.dcf.batch.DcfBatchApplication</mainClass>
 						</configuration>
 					</plugin>
 				</plugins>
