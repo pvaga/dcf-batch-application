@@ -33,6 +33,7 @@ main() {
 
     cp "$JAR_FILE" "$DIR/.dcf-batch-application-copy.jar"
 
+    # SPRING_PROFILES_ACTIVE=prod ./start.sh
     # Set the Spring profile (default to 'local' if not set)
     SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE:-dev}
 
