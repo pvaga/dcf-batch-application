@@ -7,8 +7,6 @@ export JAVA_HOME=/c/installed_software/jdk-17
 export PATH=$JAVA_HOME/bin:$PATH
 export MAVEN_HOME=/C/devtools/apache-maven-3.9.11
 export PATH=$MAVEN_HOME/bin:$PATH
-export DB_USERID=pvaga
-export DB_PASSWORD=\$Admin@123\$
 
 main() {
     while [ "$1" != "" ]; do
@@ -34,6 +32,21 @@ main() {
     fi
 
     cp "$JAR_FILE" "$DIR/.dcf-batch-application-copy.jar"
+
+    # Load environment variables from provided file path or fallback to repo deployParameters.sh
+    ENV_FILE=""
+    if [ -n "$1" ] && [ -f "$1" ]; then
+        ENV_FILE="$1"
+        echo "Loading environment variables from provided file: $ENV_FILE"
+    else
+        ENV_FILE="$DIR/deployParameters.sh"
+        if [ ! -f "$ENV_FILE" ]; then
+            echo "Could not find deployParameters file at $ENV_FILE"
+            exit 1
+        fi
+        echo "Loading environment variables from default: $ENV_FILE"
+    fi
+    . "$ENV_FILE"
 
     # SPRING_PROFILES_ACTIVE=prod ./start.sh
     # Set the Spring profile (default to 'local' if not set)
