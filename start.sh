@@ -7,6 +7,8 @@ export JAVA_HOME=/c/installed_software/jdk-17
 export PATH=$JAVA_HOME/bin:$PATH
 export MAVEN_HOME=/C/devtools/apache-maven-3.9.11
 export PATH=$MAVEN_HOME/bin:$PATH
+export DB_USERID=pvaga
+export DB_PASSWORD=\$Admin@123\$
 
 main() {
     while [ "$1" != "" ]; do
@@ -21,9 +23,9 @@ main() {
         esac
     done
 
-    echo "Starting DCF Batch Application from $DIR"
-    echo "Building project with Maven (skipping tests)..."
-    mvn -f "$DIR/pom.xml" install -DskipTests
+    #echo "Starting DCF Batch Application from $DIR"
+    #echo "Building project with Maven (skipping tests)..."
+    #mvn -f "$DIR/pom.xml" install -DskipTests
 
     JAR_FILE=$(ls ${DIR}/target/dcf-batch-application-*.jar 2>/dev/null | head -n 1)
     if [ ! -f "$JAR_FILE" ]; then
