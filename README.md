@@ -9,12 +9,12 @@ This project is a Maven-based Spring Boot batch application for DCF, using Oracl
 - Unit tests for jobs and steps
 
 ## Getting Started
-1. Build: `mvn clean install -DDB_USERID={userId} -DDB_PASSWORD={password}`
+1. Build: `mvn clean install -DDB_USERID={userId} -DDB_PASSWORD={password} -DADMIN_USERNAME={userId} -DADMIN_PASSWORD={password}`
 
 2. Run: With one of the below Commands
 
 ```
-	1) mvn spring-boot:run -Dspring-boot.run.arguments="--DB_USERID={userId} -DB_PASSWORD={password}"
+	1) mvn spring-boot:run -Dspring-boot.run.arguments="--DB_USERID={DBUser} --DB_PASSWORD={DBPassword} --ADMIN_USERNAME={userId} --ADMIN_PASSWORD={password}"
 	2) ./start.sh or ./start.sh {deployparameter_filepath}
 ```
 

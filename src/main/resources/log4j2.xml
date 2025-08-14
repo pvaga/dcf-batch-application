@@ -15,7 +15,7 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Root level="WARN">
+        <Root level="info">
             <AppenderRef ref="BatchFile"/>
             <AppenderRef ref="Console"/>
         </Root>
