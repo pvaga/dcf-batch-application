@@ -10,7 +10,13 @@ This project is a Maven-based Spring Boot batch application for DCF, using Oracl
 
 ## Getting Started
 1. Build: `mvn clean install -DDB_USERID={userId} -DDB_PASSWORD={password}`
-2. Run: `mvn spring-boot:run -Dspring-boot.run.arguments="--DB_USERID={userId} -DB_PASSWORD={password}"`
+
+2. Run: With one of the below Commands
+
+```
+	1) mvn spring-boot:run -Dspring-boot.run.arguments="--DB_USERID={userId} -DB_PASSWORD={password}"
+	2) ./start.sh or ./start.sh {deployparameter_filepath}
+```
 
 ## Project Structure
 - Base package: `gov.mass.dcf.batch`
